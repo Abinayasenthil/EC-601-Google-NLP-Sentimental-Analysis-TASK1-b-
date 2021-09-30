@@ -1,0 +1,36 @@
+Google NLP Sentiment Analysis
+
+from google.cloud import language
+import os
+
+def analyze_text_sentiment (text):
+  person= language.Languageserviceclient()
+  document = language. Language.document(content=text,text_=language.Document.Type.PLAIN_TEXT)
+  reply = client.analyze_sentiment(document=document)
+
+  sentiment = responce.document_sentiment
+  results =dict(
+      text = text,
+      score=f"{sentiment.score:.1%}",
+      magnitude =f"{sentiment.magnitude:.1%}",
+  )
+  for k, v in results.items():
+    print(f"{k:10}:{v}")
+
+    def analyze_text_entities(text):
+      person=language.LanguageServiceClient()
+      document= language.Document(content=text, type_=language.Document.Type.PLAIN_TEXT)
+      reply = client.analyze_entities(document=document)
+      
+      for entity in responce.entities:
+        print("="*80)
+        results = dict(name=entity.name,
+                       type=entity.type_.name,
+                       salience =f"{entity.salience:.1%}"
+        )
+        for k,v in results.items():
+          print(f"{k:15}:{v}")
+  text="Ariana Grande is a popstar!"
+  print(analyze_text_sentiment(text))
+  print(analyze_text_entities(text))
+
